@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper.common;
+package com.github.wangxianzhuo.lecheng.api.wrapper.common.exception;
 
 /**
  * description: LechengApiWrapperException
@@ -23,7 +23,7 @@ package com.github.wangxianzhuo.lecheng.api.wrapper.common;
  * @author: shangjie
  * @version: 1.0
  */
-public class LechengApiWrapperException extends Exception {
+public class LechengApiWrapperException extends RuntimeException {
     public LechengApiWrapperException() {
     }
 
