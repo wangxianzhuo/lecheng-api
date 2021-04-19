@@ -43,7 +43,6 @@ public class HttpRequest {
     private static final OkHttpClient okHttpClient = new OkHttpClient();
 
     /**
-     *
      * @param method
      * @param params
      * @return

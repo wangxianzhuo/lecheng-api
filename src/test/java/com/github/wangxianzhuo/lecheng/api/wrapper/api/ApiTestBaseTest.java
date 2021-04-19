@@ -16,14 +16,11 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.api;
 
-import com.github.wangxianzhuo.lecheng.api.wrapper.EnvConfig;
 import org.junit.jupiter.api.Test;
-
-import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ApiTestBaseTest extends ApiTestBase{
+class ApiTestBaseTest extends ApiTestBase {
     private final String propertyFileName = "src/test/java/com/github/wangxianzhuo/lecheng/api/wrapper/properties/test.properties";
 
     @Test

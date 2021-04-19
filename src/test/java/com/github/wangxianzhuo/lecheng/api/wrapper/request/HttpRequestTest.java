@@ -16,7 +16,6 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
-import com.github.wangxianzhuo.lecheng.api.wrapper.RequestTestBase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

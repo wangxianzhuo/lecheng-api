@@ -31,7 +31,7 @@ public class Config {
     private final String appSecret;
     private String accessToken;
 
-    private final ReentrantReadWriteLock readWriteLock =new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private final Lock readLock = readWriteLock.readLock();
     private final Lock writeLock = readWriteLock.writeLock();
 
@@ -57,7 +57,7 @@ public class Config {
         readLock.lock();
         try {
             return accessToken;
-        }finally {
+        } finally {
             readLock.unlock();
         }
     }
@@ -69,7 +69,7 @@ public class Config {
         writeLock.lock();
         try {
             this.accessToken = accessToken;
-        }finally {
+        } finally {
             writeLock.unlock();
         }
     }

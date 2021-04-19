@@ -16,12 +16,10 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.api;
 
-import com.github.wangxianzhuo.lecheng.api.wrapper.common.exception.AccessTokenExpiredException;
 import com.github.wangxianzhuo.lecheng.api.wrapper.request.HttpRequest;
 import com.github.wangxianzhuo.lecheng.api.wrapper.request.HttpResponseBody;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class SetDeviceSnapReturnURL extends Api {
     private final String deviceId;

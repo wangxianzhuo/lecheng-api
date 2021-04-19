@@ -16,7 +16,7 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.api;
 
-import com.github.wangxianzhuo.lecheng.api.wrapper.RequestTestBase;
+import com.github.wangxianzhuo.lecheng.api.wrapper.request.RequestTestBase;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

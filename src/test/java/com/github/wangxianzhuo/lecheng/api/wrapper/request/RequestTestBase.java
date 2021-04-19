@@ -14,27 +14,37 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper;
+package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
 import com.github.wangxianzhuo.lecheng.api.wrapper.api.Api;
 import com.github.wangxianzhuo.lecheng.api.wrapper.common.Config;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * description: EnvConfig
- * date: 2021/4/18 12:56
+ * description: RequestTestBase
+ * date: 2021/4/19 18:52
  *
  * @author: shangjie
  * @version: 1.0
  */
-public class EnvConfig extends RequestTestBase {
+public class RequestTestBase {
+    public void basicConfigCheck() {
+        Config config = Config.getBasicConfig();
+        basicConfigAccessTokenInit(config);
 
+        assertNotNull(config.getAppId(), "don't config vm options app.id");
+        assertNotNull(config.getAppSecret(), "don't config vm options app.secret");
+    }
 
-
+    private void basicConfigAccessTokenInit(Config config) {
+        String accessToken = System.getProperty("test.access.token");
+        if (Objects.isNull(accessToken)) {
+            Api.getAccessToken();
+        } else {
+            config.setAccessToken(accessToken);
+        }
+    }
 }
