@@ -16,25 +16,19 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ConfigTest {
-
-    @BeforeEach
-    void setUp() {
-        System.setProperty("app.id", "123");
-        System.setProperty("app.secret", "abc");
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
-    @Test
-    void getBaseConfig() {
-    }
+/**
+ * description: GsonHelper
+ * date: 2021/4/19 1:34
+ *
+ * @author: shangjie
+ * @version: 1.0
+ */
+public class GsonHelper {
+    public static final Gson DEFAULT_GSON = new GsonBuilder()
+            .serializeNulls()
+            .excludeFieldsWithoutExposeAnnotation()
+            .setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 }

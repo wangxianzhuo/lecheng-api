@@ -16,11 +16,11 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+import com.alibaba.fastjson.JSON;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * description: HttpRequestBody
@@ -29,33 +29,82 @@ import java.util.Map;
  * @author: shangjie
  * @version: 1.0
  */
+
 public class HttpRequestBody {
-    private System system;
-    private Map params;
-    private String id;
+    private final System system;
+    private final Map params;
+    private final String id;
 
+    public HttpRequestBody(Map params) {
+        this.system = System.build();
+        this.params = params;
+        this.id = UUID.randomUUID().toString();
+    }
 
-    protected static class System {
+    protected String getSystemSign() {
+        return this.system.sign;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
+    }
+
+    private static class System {
         private final static String ver = "1.0";
         private String sign;
         private String appId;
         private Long time;
         private String nonce;
 
-        protected void generateSign() throws LechengApiWrapperException {
-            try {
-                String rawSign = "time:" + this.time +
-                        ",nonce:" + this.nonce +
-                        ",appSecret:" + Config.getBaseConfig().getAppSecret();
+        private static System build() {
+            System system = new System();
+            system.appId = Config.getBaseConfig().getAppId();
+            system.time = java.lang.System.currentTimeMillis() / 1000;
+            system.nonce = UUID.randomUUID().toString();
+            system.generateSign();
 
-                MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-                messageDigest.update(rawSign.getBytes(StandardCharsets.UTF_8));
-
-                this.sign = Arrays.toString(messageDigest.digest());
-
-            } catch (NoSuchAlgorithmException e) {
-                throw new LechengApiWrapperException("generate sign failed", e.getCause());
-            }
+            return system;
         }
+
+        private void generateSign() {
+            String rawSign = "time:" + this.time +
+                    ",nonce:" + this.nonce +
+                    ",appSecret:" + Config.getBaseConfig().getAppSecret();
+
+            this.sign = DigestUtils.md5Hex(rawSign);
+        }
+
+        public String getVer() {
+            return ver;
+        }
+
+        public String getSign() {
+            return sign;
+        }
+
+        public String getAppId() {
+            return appId;
+        }
+
+        public Long getTime() {
+            return time;
+        }
+
+        public String getNonce() {
+            return nonce;
+        }
+    }
+
+    public System getSystem() {
+        return system;
+    }
+
+    public Map getParams() {
+        return params;
+    }
+
+    public String getId() {
+        return id;
     }
 }
