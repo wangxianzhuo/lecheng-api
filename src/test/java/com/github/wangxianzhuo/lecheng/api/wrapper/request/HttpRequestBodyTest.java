@@ -16,6 +16,7 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
+import com.github.wangxianzhuo.lecheng.api.wrapper.common.Config;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,18 +28,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HttpRequestBodyTest {
-    private final String appId = "123";
-
-    @BeforeEach
-    void setUp() {
-        System.setProperty("app.id", appId);
-        System.setProperty("app.secret", "abc");
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     void generateSystemSign() {
         HttpRequestBody requestBody = new HttpRequestBody(Collections.EMPTY_MAP);
@@ -58,7 +47,8 @@ class HttpRequestBodyTest {
 
         String requestBodyString = requestBody.toString();
         assertAll(
-                () -> assertTrue(requestBodyString.contains(appId), "not contain " + appId),
+                () -> assertTrue(requestBodyString.contains(Config.getBasicConfig().getAppId()),
+                        "not contain " + Config.getBasicConfig().getAppId()),
                 () -> assertTrue(requestBodyString.contains("system"), "not contain system"),
                 () -> assertTrue(requestBodyString.contains("ver"), "not contain ver"),
                 () -> assertTrue(requestBodyString.contains("sign"), "not contain sign"),
