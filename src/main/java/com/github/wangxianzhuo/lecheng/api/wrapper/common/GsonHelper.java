@@ -14,24 +14,21 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper;
+package com.github.wangxianzhuo.lecheng.api.wrapper.common;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
- * description: LechengApiWrapperException
- * date: 2021/4/18 11:28
+ * description: GsonHelper
+ * date: 2021/4/19 1:34
  *
  * @author: shangjie
  * @version: 1.0
  */
-public class LechengApiWrapperException extends Exception {
-    public LechengApiWrapperException() {
-    }
-
-    public LechengApiWrapperException(String message) {
-        super(message);
-    }
-
-    public LechengApiWrapperException(String message, Throwable cause) {
-        super(message, cause);
-    }
+public class GsonHelper {
+    public static final Gson DEFAULT_GSON = new GsonBuilder()
+            .serializeNulls()
+            .excludeFieldsWithoutExposeAnnotation()
+            .setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 }

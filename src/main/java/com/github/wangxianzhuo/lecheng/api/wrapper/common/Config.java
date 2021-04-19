@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper;
+package com.github.wangxianzhuo.lecheng.api.wrapper.common;
 
 /**
  * description: Config

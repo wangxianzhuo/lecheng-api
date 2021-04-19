@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
 /**
- * description: GsonHelper
- * date: 2021/4/19 1:34
+ * description: EnvConfig
+ * date: 2021/4/18 12:56
  *
  * @author: shangjie
  * @version: 1.0
  */
-public class GsonHelper {
-    public static final Gson DEFAULT_GSON = new GsonBuilder()
-            .serializeNulls()
-            .excludeFieldsWithoutExposeAnnotation()
-            .setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+public class EnvConfig {
+    public static final String appId = "123";
+    public static final String appSecret = "abc";
+
+    public static void setProperties() {
+        System.setProperty("app.id", appId);
+        System.setProperty("app.secret", appSecret);
+    }
 }

@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper;
+package com.github.wangxianzhuo.lecheng.api.wrapper.common;
 
 /**
- * description: EnvConfig
- * date: 2021/4/18 12:56
+ * description: LechengApiWrapperException
+ * date: 2021/4/18 11:28
  *
  * @author: shangjie
  * @version: 1.0
  */
-public class EnvConfig {
-    public static final String appId = "123";
-    public static final String appSecret = "abc";
+public class LechengApiWrapperException extends Exception {
+    public LechengApiWrapperException() {
+    }
 
-    public static void setProperties() {
-        System.setProperty("app.id", appId);
-        System.setProperty("app.secret", appSecret);
+    public LechengApiWrapperException(String message) {
+        super(message);
+    }
+
+    public LechengApiWrapperException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

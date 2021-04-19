@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper;
+package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
 import com.alibaba.fastjson.JSON;
+import com.github.wangxianzhuo.lecheng.api.wrapper.common.Config;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.Map;
