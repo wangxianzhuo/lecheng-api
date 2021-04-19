@@ -27,10 +27,12 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HttpRequestBodyTest {
+    private final String appId = "123";
 
     @BeforeEach
     void setUp() {
-        EnvConfig.setProperties();
+        System.setProperty("app.id", appId);
+        System.setProperty("app.secret", "abc");
     }
 
     @AfterEach
@@ -56,7 +58,7 @@ class HttpRequestBodyTest {
 
         String requestBodyString = requestBody.toString();
         assertAll(
-                () -> assertTrue(requestBodyString.contains(EnvConfig.appId), "not contain " + EnvConfig.appId),
+                () -> assertTrue(requestBodyString.contains(appId), "not contain " + appId),
                 () -> assertTrue(requestBodyString.contains("system"), "not contain system"),
                 () -> assertTrue(requestBodyString.contains("ver"), "not contain ver"),
                 () -> assertTrue(requestBodyString.contains("sign"), "not contain sign"),

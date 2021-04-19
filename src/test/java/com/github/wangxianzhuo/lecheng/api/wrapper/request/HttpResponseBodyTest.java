@@ -17,7 +17,6 @@
 package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
 import com.alibaba.fastjson.JSONException;
-import com.github.wangxianzhuo.lecheng.api.wrapper.request.HttpResponseBody;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

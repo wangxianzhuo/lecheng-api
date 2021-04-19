@@ -16,6 +16,9 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.common;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 /**
  * description: Config
  * date: 2021/4/18 11:41
@@ -26,7 +29,13 @@ package com.github.wangxianzhuo.lecheng.api.wrapper.common;
 public class Config {
     private final String appId;
     private final String appSecret;
-    private static final Config baseConfig = new Config();
+    private String accessToken;
+
+    private final ReentrantReadWriteLock readWriteLock =new ReentrantReadWriteLock();
+    private final Lock readLock = readWriteLock.readLock();
+    private final Lock writeLock = readWriteLock.writeLock();
+
+    private static final Config basicConfig = new Config();
 
     public Config() {
         this.appId = System.getProperty("app.id");
@@ -41,7 +50,31 @@ public class Config {
         return appSecret;
     }
 
-    public static Config getBaseConfig() {
-        return baseConfig;
+    /**
+     * accessToken get concurrent safe
+     */
+    public String getAccessToken() {
+        readLock.lock();
+        try {
+            return accessToken;
+        }finally {
+            readLock.unlock();
+        }
+    }
+
+    /**
+     * accessToken set concurrent safe
+     */
+    public void setAccessToken(String accessToken) {
+        writeLock.lock();
+        try {
+            this.accessToken = accessToken;
+        }finally {
+            writeLock.unlock();
+        }
+    }
+
+    public static Config getBasicConfig() {
+        return basicConfig;
     }
 }

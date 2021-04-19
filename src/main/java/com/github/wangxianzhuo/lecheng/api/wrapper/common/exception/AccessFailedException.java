@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-package com.github.wangxianzhuo.lecheng.api.wrapper.request;
+package com.github.wangxianzhuo.lecheng.api.wrapper.common.exception;
 
 /**
- * description: EnvConfig
- * date: 2021/4/18 12:56
+ * description: AccessFailedException
+ * date: 2021/4/19 18:03
  *
  * @author: shangjie
  * @version: 1.0
  */
-public class EnvConfig {
-    public static final String appId = "123";
-    public static final String appSecret = "abc";
+public class AccessFailedException extends RuntimeException {
+    public AccessFailedException(String message) {
+        super(message);
+    }
 
-    public static void setProperties() {
-        System.setProperty("app.id", appId);
-        System.setProperty("app.secret", appSecret);
+    public AccessFailedException() {
     }
 }

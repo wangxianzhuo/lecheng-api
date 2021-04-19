@@ -60,7 +60,7 @@ public class HttpRequestBody {
 
         private static System build() {
             System system = new System();
-            system.appId = Config.getBaseConfig().getAppId();
+            system.appId = Config.getBasicConfig().getAppId();
             system.time = java.lang.System.currentTimeMillis() / 1000;
             system.nonce = UUID.randomUUID().toString();
             system.generateSign();
@@ -71,7 +71,7 @@ public class HttpRequestBody {
         private void generateSign() {
             String rawSign = "time:" + this.time +
                     ",nonce:" + this.nonce +
-                    ",appSecret:" + Config.getBaseConfig().getAppSecret();
+                    ",appSecret:" + Config.getBasicConfig().getAppSecret();
 
             this.sign = DigestUtils.md5Hex(rawSign);
         }

@@ -16,7 +16,7 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
-import com.github.wangxianzhuo.lecheng.api.wrapper.common.Config;
+import com.github.wangxianzhuo.lecheng.api.wrapper.RequestTestBase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,13 +25,11 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HttpRequestTest {
+class HttpRequestTest extends RequestTestBase {
 
     @BeforeEach
     void setUp() {
-        Config config = Config.getBaseConfig();
-        assertNotNull(config.getAppId(), "don't config vm options app.id");
-        assertNotNull(config.getAppSecret(), "don't config vm options app.secret");
+        basicConfigCheck();
     }
 
     @AfterEach

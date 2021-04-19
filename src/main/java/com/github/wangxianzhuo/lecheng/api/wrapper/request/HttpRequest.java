@@ -16,6 +16,7 @@
 
 package com.github.wangxianzhuo.lecheng.api.wrapper.request;
 
+import com.github.wangxianzhuo.lecheng.api.wrapper.common.exception.AccessFailedException;
 import com.github.wangxianzhuo.lecheng.api.wrapper.common.exception.AccessTokenExpiredException;
 import com.github.wangxianzhuo.lecheng.api.wrapper.common.exception.LechengApiWrapperException;
 import com.github.wangxianzhuo.lecheng.api.wrapper.common.exception.RequestIdIsChangedException;
@@ -67,9 +68,15 @@ public class HttpRequest {
                 throw new RequestIdIsChangedException();
             }
 
-            if (httpResponseBody.getResult().getResultCode() == HttpResponseBody.ResultCode.TK1002) {
+            HttpResponseBody.ResultCode resultCode = httpResponseBody.getResult().getResultCode();
+            if (resultCode == HttpResponseBody.ResultCode.TK1002) {
                 throw new AccessTokenExpiredException();
             }
+
+            if (resultCode != HttpResponseBody.ResultCode.ZERO) {
+                throw new AccessFailedException(resultCode.toString());
+            }
+
             return httpResponseBody;
         } catch (IOException e) {
             throw new LechengApiWrapperException("request[" + url + "] error,", e);
