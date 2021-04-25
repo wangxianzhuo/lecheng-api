@@ -35,11 +35,17 @@ public class Config {
     private final Lock readLock = readWriteLock.readLock();
     private final Lock writeLock = readWriteLock.writeLock();
 
-    private static final Config basicConfig = new Config();
+    private static Config basicConfig = new Config();
 
     public Config() {
         this.appId = System.getProperty("app.id");
         this.appSecret = System.getProperty("app.secret");
+    }
+
+    public Config(String appId, String appSecret, String accessToken) {
+        this.appId = appId;
+        this.appSecret = appSecret;
+        this.accessToken = accessToken;
     }
 
     public String getAppId() {
@@ -76,5 +82,9 @@ public class Config {
 
     public static Config getBasicConfig() {
         return basicConfig;
+    }
+
+    public static void setBasicConfig(Config basicConfig) {
+        Config.basicConfig = basicConfig;
     }
 }
